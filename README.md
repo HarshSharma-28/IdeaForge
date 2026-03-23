@@ -1,4 +1,4 @@
-\# IdeaForge AI 🔥
+# IdeaForge AI 🔥
 
 
 
@@ -6,7 +6,7 @@
 
 
 
-\## What is IdeaForge?
+## What is IdeaForge?
 
 
 
@@ -14,33 +14,33 @@ IdeaForge is a multi-agent AI system built on GitLab that automatically analyzes
 
 
 
-\## Agents
+## Agents
 
 
 
-\- Agent 1: Issue Intelligence — Root cause analysis
+- Agent 1: Issue Intelligence — Root cause analysis
 
-\- Agent 2: Problem Expansion — Codebase impact mapping  
+- Agent 2: Problem Expansion — Codebase impact mapping  
 
-\- Agent 3: Solution Generator — 3 solution approaches
+- Agent 3: Solution Generator — 3 solution approaches
 
-\- Agent 4: Security Scanner — Vulnerability detection
+- Agent 4: Security Scanner — Vulnerability detection
 
-\- Agent 5: PR Generator — Auto Merge Request creation
-
-
-
-\## Setup
+- Agent 5: PR Generator — Auto Merge Request creation
 
 
 
-1\. Clone the repo
+## Setup
 
-2\. Install dependencies:
+
+
+1. Clone the repo
+
+2. Install dependencies:
 
 &#x20;  pip install groq requests python-dotenv
 
-3\. Create .env file:
+3. Create .env file:
 
 &#x20;  GITLAB\_TOKEN=your\_token
 
@@ -48,25 +48,25 @@ IdeaForge is a multi-agent AI system built on GitLab that automatically analyzes
 
 &#x20;  GITLAB\_PROJECT\_ID=your\_project\_id
 
-4\. Run:
+4. Run:
 
 &#x20;  python main.py
 
 
 
-\## Tech Stack
+## Tech Stack
 
-\- Python
+- Python
 
-\- Groq API (Llama 3.3)
+- Groq API (Llama 3.3)
 
-\- GitLab API
+- GitLab API
 
-\- python-dotenv
+- python-dotenv
 
 
 
-\## License
+## License
 
 MIT
 
