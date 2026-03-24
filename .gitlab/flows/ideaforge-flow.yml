@@ -1,14 +1,24 @@
-name: IdeaForge-Pipeline
-description: Converts GitLab issues to MR automatically
+name: IdeaForge-Autonomous-Flow
+description: Converts GitLab issues directly into Merge Requests through a 5-step analysis pipeline.
 on:
   - issue_created
 steps:
-  - name: Analyze Issue
-    agent: IdeaForge
-    prompt: Analyze this issue - find root cause, affected areas, severity
-  - name: Security Check  
-    agent: IdeaForge
-    prompt: Check security vulnerabilities in proposed solution
-  - name: Create MR
-    agent: IdeaForge
-    prompt: Generate code fix and create Merge Request
+  - name: 1. Issue Intelligence
+    agent: IdeaForge Autonomous Agent
+    prompt: Analyze issue {{issue.iid}}. Determine the surface problem, the real problem, the root cause, its severity, and recommended fix.
+    
+  - name: 2. Problem Expansion
+    agent: IdeaForge Autonomous Agent
+    prompt: Based on your analysis, map out what specific files in the repository are affected, note any hidden issues, and document the risk areas.
+    
+  - name: 3. Solution Generator
+    agent: IdeaForge Autonomous Agent
+    prompt: Generate 3 distinct solutions (e.g., Quick patch, Smart refactor, Architecture overhaul) for the issue. Choose the most optimal one.
+    
+  - name: 4. Security Scanner
+    agent: IdeaForge Autonomous Agent
+    prompt: Run a deep security evaluation on your chosen solution. List any vulnerabilities, injection risks, or validation flaws.
+    
+  - name: 5. PR Generator
+    agent: IdeaForge Autonomous Agent
+    prompt: Create a new branch named `fix/ideaforge-autofix`. Write the exact code needed. Create a Merge Request to `main`. Format the MR description beautifully with your previous Problem Analysis, Proposed Solution, and the Code Fix.
