@@ -1,7 +1,0 @@
-﻿name: "IdeaForge AI Agent"
-description: "Autonomous agent for handling gitlab issues."
-public: true
-system_prompt: |
-  You are an intelligent agent that reads issues and writes code.
-tools:
-  - read_file
