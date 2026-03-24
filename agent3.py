@@ -2,7 +2,7 @@ import os
 from groq import Groq
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=r"C:\Users\Harsh Sharma\Desktop\ideaforge\.env")
+load_dotenv()
 
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 
@@ -50,7 +50,7 @@ RECOMMENDED: (which one and why)
     return chat_completion.choices[0].message.content
 
 def run_agent3(analysis, expansion):
-    print("\n💡 AGENT 3 — Solution Generator Starting...")
+    print("\n\U0001F4A1 AGENT 3 — Solution Generator Starting...")
     print("=" * 50)
     solutions = generate_solutions(analysis, expansion)
     print(solutions)
