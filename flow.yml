@@ -1,0 +1,14 @@
+name: IdeaForge-Pipeline
+description: Converts GitLab issues to MR automatically
+on:
+  - issue_created
+steps:
+  - name: Analyze Issue
+    agent: IdeaForge
+    prompt: Analyze this issue - find root cause, affected areas, severity
+  - name: Security Check  
+    agent: IdeaForge
+    prompt: Check security vulnerabilities in proposed solution
+  - name: Create MR
+    agent: IdeaForge
+    prompt: Generate code fix and create Merge Request
