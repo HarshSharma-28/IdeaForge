@@ -11,48 +11,52 @@ definition:
       prompt_id: "issue_intelligence_prompt"
       inputs: ["context:goal"]
       toolset:
-        - name: "read_file"
-        - name: "list_directory"
-        - name: "search_code"
-        - name: "add_comment_to_issue"
+        - "read_file"
+        - "list_dir"
+        - "grep"
+        - "find_files"
+        - "create_issue_note"
     - name: "problem_expansion"
       type: AgentComponent
       prompt_id: "problem_expansion_prompt"
       inputs: ["context:goal"]
       toolset:
-        - name: "read_file"
-        - name: "list_directory"
-        - name: "search_code"
-        - name: "add_comment_to_issue"
+        - "read_file"
+        - "list_dir"
+        - "grep"
+        - "find_files"
+        - "create_issue_note"
     - name: "solution_generator"
       type: AgentComponent
       prompt_id: "solution_generator_prompt"
       inputs: ["context:goal"]
       toolset:
-        - name: "read_file"
-        - name: "list_directory"
-        - name: "search_code"
-        - name: "add_comment_to_issue"
+        - "read_file"
+        - "list_dir"
+        - "grep"
+        - "find_files"
+        - "create_issue_note"
     - name: "security_scanner"
       type: AgentComponent
       prompt_id: "security_scanner_prompt"
       inputs: ["context:goal"]
       toolset:
-        - name: "read_file"
-        - name: "search_code"
-        - name: "add_comment_to_issue"
+        - "read_file"
+        - "grep"
+        - "find_files"
+        - "create_issue_note"
     - name: "pr_generator"
       type: AgentComponent
       prompt_id: "pr_generator_prompt"
       inputs: ["context:goal"]
       toolset:
-        - name: "read_file"
-        - name: "list_directory"
-        - name: "create_file"
-        - name: "update_file"
-        - name: "create_branch"
-        - name: "create_merge_request"
-        - name: "add_comment_to_issue"
+        - "read_file"
+        - "list_dir"
+        - "create_file_with_contents"
+        - "edit_file"
+        - "run_git_command"
+        - "create_merge_request"
+        - "create_issue_note"
 
   prompts:
     - prompt_id: "issue_intelligence_prompt"
