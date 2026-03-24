@@ -3,7 +3,7 @@ import os
 from groq import Groq
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=r"C:\Users\Harsh Sharma\Desktop\ideaforge\.env")
+load_dotenv()
 
 GITLAB_TOKEN = os.getenv("GITLAB_TOKEN")
 GROQ_KEY = os.getenv("GROQ_API_KEY")
@@ -40,10 +40,10 @@ Return analysis in this exact format:
     return chat_completion.choices[0].message.content
 
 def run_agent1():
-    print("🤖 AGENT 1 — Issue Intelligence Starting...")
+    print("\U0001F916 AGENT 1 — Issue Intelligence Starting...")
     print("=" * 50)
     if not GROQ_KEY:
-        print("❌ GROQ_API_KEY missing in .env!")
+        print("\u274c GROQ_API_KEY missing in .env!")
         return None
     issues = get_gitlab_issues()
     if not issues:
@@ -51,7 +51,7 @@ def run_agent1():
         return None
     full_analysis = ""
     for issue in issues[:3]:
-        print(f"\n📋 Issue: {issue['title']}")
+        print(f"\n\U0001F4CB Issue: {issue['title']}")
         print("-" * 40)
         analysis = analyze_issue(issue['title'] + " " + issue.get('description', ''))
         print(analysis)

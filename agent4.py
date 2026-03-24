@@ -2,7 +2,7 @@ import os
 from groq import Groq
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=r"C:\Users\Harsh Sharma\Desktop\ideaforge\.env")
+load_dotenv()
 
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 
@@ -47,7 +47,7 @@ SECURITY SCORE: (X/10)
     return chat_completion.choices[0].message.content
 
 def run_agent4(analysis, solutions):
-    print("\n🔒 AGENT 4 — Security Scanner Starting...")
+    print("\n\U0001F512 AGENT 4 — Security Scanner Starting...")
     print("=" * 50)
     security = security_scan(analysis, solutions)
     print(security)

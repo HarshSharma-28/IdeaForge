@@ -3,7 +3,7 @@ import os
 from groq import Groq
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=r"C:\Users\Harsh Sharma\Desktop\ideaforge\.env")
+load_dotenv()
 
 GITLAB_TOKEN = os.getenv("GITLAB_TOKEN")
 GROQ_KEY = os.getenv("GROQ_API_KEY")
@@ -47,7 +47,7 @@ Return in this exact format:
     return chat_completion.choices[0].message.content
 
 def run_agent2(analysis):
-    print("\n🔍 AGENT 2 — Problem Expansion Starting...")
+    print("\n\U0001F50D AGENT 2 — Problem Expansion Starting...")
     print("=" * 50)
     files = get_repo_files()
     expansion = expand_problem(analysis, files)
