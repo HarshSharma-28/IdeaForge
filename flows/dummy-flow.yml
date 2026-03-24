@@ -1,60 +1,30 @@
-name: "AI Hackathon Flow"
-description: "A flow to..."
+﻿name: "IdeaForge Production Flow"
+description: "Orchestration flow for IdeaForge agents."
 public: true
 definition:
   version: v1
   environment: ambient
-  
-  # Components define the steps in your flow
-  # Each component can be an Agent, DeterministicStep, or other component types
   components:
-    - name: "my_agent"
-      type: AgentComponent  # Options: AgentComponent, DeterministicStepComponent
-      prompt_id: "my_prompt"  # References a prompt defined below
+    - name: "ideaforge_coordinator"
+      type: AgentComponent
+      prompt_id: "coordinator_prompt"
       inputs:
-        - "context:goal"  # Input from user or previous component
-      toolset: []  # Add tool names here: ["get_issue", "create_issue_note"], see https://gitlab.com/components/ai-catalog/-/blob/main/tool_mapping.json?ref_type=heads
-
-      # Optional: UI logging
-      ui_log_events:
-        - on_agent_final_answer
-        - on_tool_execution_success
-  
-  # Define your prompts here
-  # Each prompt configures an AI agent's behavior
+        - "context:goal"
+      toolset: []
   prompts:
-    - prompt_id: "my_prompt"  # Must match the prompt_id referenced above
-      name: "My Agent Prompt"
-
-      # System and user prompts define the agent's behavior
+    - prompt_id: "coordinator_prompt"
+      name: "Coordinator Prompt"
       prompt_template:
         system: |
-          Only reply with "I'm a placeholder agent, please change my prompt"
-
-        # Available variables depend on your inputs:
-        # {{goal}} - The user's request
-        # {{context}} - Additional context from previous steps
+          You are an automated orchestration bot.
         user: |
           {{goal}}
-        placeholder: history  # Maintains conversation context
+        placeholder: history
       unit_primitives: []
       params:
-        timeout: 180  # Seconds before timeout
-
-  # Routers define the flow between components
-  # Use "end" as the final destination
+        timeout: 180
   routers:
-    - from: "my_agent"
+    - from: "ideaforge_coordinator"
       to: "end"
-
-    # Example: Multi-step flow
-    # - from: "fetch_data"
-    #   to: "process_data"
-    # - from: "process_data"
-    #   to: "my_agent"
-    # - from: "my_agent"
-    #   to: "end"
-
-  # Define the entry point for your flow
   flow:
-    entry_point: "my_agent"
+    entry_point: "ideaforge_coordinator"

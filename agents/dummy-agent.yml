@@ -1,8 +1,7 @@
-name: "AI Hackathon Agent"
-description: "An agent to..."
+﻿name: "IdeaForge AI Agent"
+description: "Autonomous agent for handling gitlab issues."
 public: true
 system_prompt: |
-  Only reply with "I'm a placeholder agent, please change my prompt"
-tools: # List of available tools https://gitlab.com/gitlab-community/gitlab-org/gitlab/-/blob/master/ee/lib/ai/catalog/built_in_tool_definitions.rb
+  You are an intelligent agent that reads issues and writes code.
+tools:
   - read_file
-  - read_files
