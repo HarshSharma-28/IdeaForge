@@ -165,11 +165,12 @@ The final agent. Checks the security decision, creates a new branch with a seman
 
 ### Installation
 
-**Step 1:** Copy the `.gitlab/duo-workflow/` directory into your repository root.
+**Step 1:** Copy the `agents/` and `flows/` directories into your repository root.
 
 ```bash
-cp -r .gitlab/duo-workflow/ /your/project/.gitlab/duo-workflow/
-git add .gitlab/duo-workflow/
+cp -r agents/ /your/project/agents/
+cp -r flows/ /your/project/flows/
+git add agents/ flows/
 git commit -m "feat(ideaforge): add IdeaForge multi-agent flow"
 git push
 ```
@@ -213,15 +214,14 @@ git push
 
 ```
 .
-├── .gitlab/
-│   └── duo-workflow/
-│       ├── ideaforge-flow.yaml          # Main orchestration flow
-│       └── agents/
-│           ├── 01-issue-intelligence.yaml  # Root cause analysis
-│           ├── 02-problem-expansion.yaml   # Codebase impact mapping
-│           ├── 03-solution-generator.yaml  # Code generation
-│           ├── 04-security-scanner.yaml    # Security audit
-│           └── 05-pr-generator.yaml        # MR creation
+├── flows/
+│   └── ideaforge-flow.yaml          # Main orchestration flow
+├── agents/
+│   ├── 01-issue-intelligence.yaml  # Root cause analysis
+│   ├── 02-problem-expansion.yaml   # Codebase impact mapping
+│   ├── 03-solution-generator.yaml  # Code generation
+│   ├── 04-security-scanner.yaml    # Security audit
+│   └── 05-pr-generator.yaml        # MR creation
 ├── docs/
 │   └── architecture.md              # Deep technical documentation
 ├── LICENSE                          # MIT License
