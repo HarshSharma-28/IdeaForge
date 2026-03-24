@@ -1,0 +1,22 @@
+stages:
+  - run-ideaforge
+
+ideaforge-ai-pipeline:
+  stage: run-ideaforge
+  image: python:3.10-slim
+  
+  # Trigger this pipeline on pushes, web triggers, and optionally API triggers
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    
+  before_script:
+    - echo "Setting up IdeaForge Environment..."
+    - pip install groq requests python-dotenv
+
+  script:
+    - echo "Starting IdeaForge AI Agents..."
+    # The script looks for GITLAB_TOKEN, GROQ_API_KEY, and GITLAB_PROJECT_ID 
+    # Make sure these are added to GitLab Settings -> CI/CD -> Variables!
+    - python main.py
