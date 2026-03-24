@@ -10,27 +10,49 @@ definition:
       type: AgentComponent
       prompt_id: "issue_intelligence_prompt"
       inputs: ["context:goal"]
-      toolset: ["read_file", "list_directory", "search_code", "add_comment_to_issue"]
+      toolset:
+        - tool_name: "read_file"
+        - tool_name: "list_directory"
+        - tool_name: "search_code"
+        - tool_name: "add_comment_to_issue"
     - name: "problem_expansion"
       type: AgentComponent
       prompt_id: "problem_expansion_prompt"
       inputs: ["context:goal"]
-      toolset: ["read_file", "list_directory", "search_code", "add_comment_to_issue"]
+      toolset:
+        - tool_name: "read_file"
+        - tool_name: "list_directory"
+        - tool_name: "search_code"
+        - tool_name: "add_comment_to_issue"
     - name: "solution_generator"
       type: AgentComponent
       prompt_id: "solution_generator_prompt"
       inputs: ["context:goal"]
-      toolset: ["read_file", "list_directory", "search_code", "add_comment_to_issue"]
+      toolset:
+        - tool_name: "read_file"
+        - tool_name: "list_directory"
+        - tool_name: "search_code"
+        - tool_name: "add_comment_to_issue"
     - name: "security_scanner"
       type: AgentComponent
       prompt_id: "security_scanner_prompt"
       inputs: ["context:goal"]
-      toolset: ["read_file", "search_code", "add_comment_to_issue"]
+      toolset:
+        - tool_name: "read_file"
+        - tool_name: "search_code"
+        - tool_name: "add_comment_to_issue"
     - name: "pr_generator"
       type: AgentComponent
       prompt_id: "pr_generator_prompt"
       inputs: ["context:goal"]
-      toolset: ["read_file", "list_directory", "create_file", "update_file", "create_branch", "create_merge_request", "add_comment_to_issue"]
+      toolset:
+        - tool_name: "read_file"
+        - tool_name: "list_directory"
+        - tool_name: "create_file"
+        - tool_name: "update_file"
+        - tool_name: "create_branch"
+        - tool_name: "create_merge_request"
+        - tool_name: "add_comment_to_issue"
 
   prompts:
     - prompt_id: "issue_intelligence_prompt"
