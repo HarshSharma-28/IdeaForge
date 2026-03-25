@@ -3,29 +3,103 @@ environment: ambient
 name: "IdeaForge"
 description: "Autonomous multi-agent pipeline that transforms GitLab issues into production-ready Merge Requests."
 
-# IdeaForge — Multi-Agent AI Pipeline
-# Orchestrates 5 agents sequentially
-
 components:
   - name: "issue_intelligence"
     type: AgentComponent
-    reference: "agents/issue-intelligence.yml" # Referencing the local file
+    reference: "agents/issue-intelligence.yml"
+    inputs:
+      - from: "context:goal"
+        as: "trigger_context"
+      - from: "context:project_id"
+        as: "project_id"
+    toolset:
+      - "get_issue"
+      - "list_repository_tree"
+      - "create_issue_note"
 
   - name: "problem_expansion"
     type: AgentComponent
     reference: "agents/problem-expansion.yml"
+    inputs:
+      - from: "context:goal"
+        as: "trigger_context"
+      - from: "context:project_id"
+        as: "project_id"
+      - from: "component:issue_intelligence.output"
+        as: "intelligence_report"
+    toolset:
+      - "get_issue"
+      - "get_repository_file"
+      - "list_repository_tree"
+      - "find_files"
+      - "blob_search"
+      - "create_issue_note"
 
   - name: "solution_generator"
     type: AgentComponent
     reference: "agents/solution-generator.yml"
+    inputs:
+      - from: "context:goal"
+        as: "trigger_context"
+      - from: "context:project_id"
+        as: "project_id"
+      - from: "component:issue_intelligence.output"
+        as: "intelligence_report"
+      - from: "component:problem_expansion.output"
+        as: "impact_map"
+    toolset:
+      - "get_issue"
+      - "get_repository_file"
+      - "list_repository_tree"
+      - "find_files"
+      - "blob_search"
+      - "create_issue_note"
 
   - name: "security_scanner"
     type: AgentComponent
     reference: "agents/security-scanner.yml"
+    inputs:
+      - from: "context:goal"
+        as: "trigger_context"
+      - from: "context:project_id"
+        as: "project_id"
+      - from: "component:issue_intelligence.output"
+        as: "intelligence_report"
+      - from: "component:problem_expansion.output"
+        as: "impact_map"
+      - from: "component:solution_generator.output"
+        as: "solution_report"
+    toolset:
+      - "get_repository_file"
+      - "blob_search"
+      - "create_issue_note"
 
   - name: "pr_generator"
     type: AgentComponent
     reference: "agents/pr-generator.yml"
+    inputs:
+      - from: "context:goal"
+        as: "trigger_context"
+      - from: "context:project_id"
+        as: "project_id"
+      - from: "component:issue_intelligence.output"
+        as: "intelligence_report"
+      - from: "component:problem_expansion.output"
+        as: "impact_map"
+      - from: "component:solution_generator.output"
+        as: "solution_report"
+      - from: "component:security_scanner.output"
+        as: "security_report"
+    toolset:
+      - "get_issue"
+      - "get_repository_file"
+      - "list_repository_tree"
+      - "create_file"
+      - "update_file"
+      - "create_commit"
+      - "create_branch"
+      - "create_merge_request"
+      - "create_issue_note"
 
 routers:
   - from: "issue_intelligence"

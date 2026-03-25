@@ -1,18 +1,6 @@
 name: "security_scanner"
 description: "Performs a comprehensive security audit of proposed code changes against OWASP Top 10."
-type: AgentComponent
-inputs:
-  - from: "context:goal"
-    as: "trigger_context"
-  - from: "context:project_id"
-    as: "project_id"
-  - from: "component:issue_intelligence.output"
-    as: "intelligence_report"
-  - from: "component:problem_expansion.output"
-    as: "impact_map"
-  - from: "component:solution_generator.output"
-    as: "solution_report"
-toolset:
+tools:
   - "get_repository_file"
   - "blob_search"
   - "create_issue_note"

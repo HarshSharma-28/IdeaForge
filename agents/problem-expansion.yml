@@ -1,14 +1,6 @@
 name: "problem_expansion"
 description: "Explores the codebase based on intelligence reports to map affected files and call chains."
-type: AgentComponent
-inputs:
-  - from: "context:goal"
-    as: "trigger_context"
-  - from: "context:project_id"
-    as: "project_id"
-  - from: "component:issue_intelligence.output"
-    as: "intelligence_report"
-toolset:
+tools:
   - "get_issue"
   - "get_repository_file"
   - "list_repository_tree"

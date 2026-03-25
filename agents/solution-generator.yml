@@ -1,16 +1,6 @@
 name: "solution_generator"
 description: "Generates multiple solution approaches and implements the best one as high-quality code."
-type: AgentComponent
-inputs:
-  - from: "context:goal"
-    as: "trigger_context"
-  - from: "context:project_id"
-    as: "project_id"
-  - from: "component:issue_intelligence.output"
-    as: "intelligence_report"
-  - from: "component:problem_expansion.output"
-    as: "impact_map"
-toolset:
+tools:
   - "get_issue"
   - "get_repository_file"
   - "list_repository_tree"

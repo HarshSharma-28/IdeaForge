@@ -1,12 +1,6 @@
 name: "issue_intelligence"
 description: "Analyzes GitLab issues to identify root causes, classification, and affected areas."
-type: AgentComponent
-inputs:
-  - from: "context:goal"
-    as: "trigger_context"
-  - from: "context:project_id"
-    as: "project_id"
-toolset:
+tools:
   - "get_issue"
   - "list_repository_tree"
   - "create_issue_note"
