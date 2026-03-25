@@ -1,0 +1,41 @@
+version: "v1"
+environment: ambient
+
+# IdeaForge — Multi-Agent AI Pipeline
+# Orchestrates 5 agents sequentially
+
+components:
+  - name: "issue_intelligence"
+    type: AgentComponent
+    reference: "agents/issue-intelligence.yml" # Referencing the local file
+
+  - name: "problem_expansion"
+    type: AgentComponent
+    reference: "agents/problem-expansion.yml"
+
+  - name: "solution_generator"
+    type: AgentComponent
+    reference: "agents/solution-generator.yml"
+
+  - name: "security_scanner"
+    type: AgentComponent
+    reference: "agents/security-scanner.yml"
+
+  - name: "pr_generator"
+    type: AgentComponent
+    reference: "agents/pr-generator.yml"
+
+routers:
+  - from: "issue_intelligence"
+    to: "problem_expansion"
+  - from: "problem_expansion"
+    to: "solution_generator"
+  - from: "solution_generator"
+    to: "security_scanner"
+  - from: "security_scanner"
+    to: "pr_generator"
+  - from: "pr_generator"
+    to: "end"
+
+flow:
+  entry_point: "issue_intelligence"
