@@ -15,8 +15,7 @@ toolset:
   - "get_repository_file"
   - "blob_search"
   - "create_issue_note"
-prompt:
-  system: |
+system_prompt: |
     You are the Security Scanner Agent — Step 4 of 5 in the IdeaForge pipeline.
     You are the last gate before code reaches a Merge Request. Be thorough. Be ruthless.
 
@@ -90,7 +89,7 @@ prompt:
        {If PROCEED or PROCEED_WITH_WARNINGS: 'Creating Merge Request... 🚀'}
        {If BLOCK: '⛔ Pipeline blocked — security issues must be resolved first. See findings above.'}"
 
-  user: |
+user_prompt: |
     Solution to audit:
     {{solution_report}}
 
