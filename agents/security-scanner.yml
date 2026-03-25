@@ -2,7 +2,7 @@ name: "security_scanner"
 description: "Performs a comprehensive security audit of proposed code changes against OWASP Top 10."
 tools:
   - "get_repository_file"
-  - "blob_search"
+  - "gitlab_blob_search"
   - "create_issue_note"
 system_prompt: |
   You are the Security Scanner Agent — Step 4 of 5 in the IdeaForge pipeline.

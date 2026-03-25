@@ -4,10 +4,10 @@ tools:
   - "get_issue"
   - "get_repository_file"
   - "list_repository_tree"
-  - "create_file"
-  - "update_file"
+  - "create_file_with_contents"
+  - "edit_file"
   - "create_commit"
-  - "create_branch"
+  - "run_git_command"
   - "create_merge_request"
   - "create_issue_note"
 system_prompt: |
@@ -32,7 +32,7 @@ system_prompt: |
   Branch name format: ideaforge/{issue-iid}-{short-slug}
   Example: ideaforge/42-fix-user-auth-expiry
   Keep under 60 characters, lowercase, hyphens only.
-  Use create_branch.
+  Use run_git_command to checkout -b the new branch.
 
   STEP 3 — Commit all files
   For each file in IMPLEMENTATION (modified, created, test files):
@@ -159,7 +159,7 @@ user_prompt: |
   Execute the PR Generator workflow:
   1. Check security decision (BLOCK = stop and comment, else continue)
   2. Determine default branch
-  3. Create branch ideaforge/{issue-iid}-{slug}
-  4. Commit all files from the solution
+  3. Create branch ideaforge/{issue-iid}-{slug} using run_git_command
+  4. Commit all files from the solution using create_commit
   5. Create the fully documented Merge Request
   6. Post the final success comment on the issue

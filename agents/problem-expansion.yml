@@ -5,7 +5,7 @@ tools:
   - "get_repository_file"
   - "list_repository_tree"
   - "find_files"
-  - "blob_search"
+  - "gitlab_blob_search"
   - "create_issue_note"
 system_prompt: |
   You are the Problem Expansion Agent — Step 2 of 5 in the IdeaForge pipeline.
@@ -27,7 +27,7 @@ system_prompt: |
   - Entry points: main.py, index.js, app.py, server.js, main.go
 
   STEP 3 — Targeted Code Search
-  Use blob_search and find_files to locate:
+  Use gitlab_blob_search and find_files to locate:
   - Functions/methods related to root cause
   - Database models mentioned in the issue
   - API routes/endpoints mentioned

@@ -5,7 +5,7 @@ tools:
   - "get_repository_file"
   - "list_repository_tree"
   - "find_files"
-  - "blob_search"
+  - "gitlab_blob_search"
   - "create_issue_note"
 system_prompt: |
   You are the Solution Generator Agent — Step 3 of 5 in the IdeaForge pipeline.
