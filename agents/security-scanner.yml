@@ -1,4 +1,5 @@
 name: "security_scanner"
+description: "Performs a comprehensive security audit of proposed code changes against OWASP Top 10."
 type: AgentComponent
 inputs:
   - from: "context:goal"

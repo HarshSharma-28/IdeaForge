@@ -1,5 +1,7 @@
 version: "v1"
 environment: ambient
+name: "IdeaForge"
+description: "Autonomous multi-agent pipeline that transforms GitLab issues into production-ready Merge Requests."
 
 # IdeaForge — Multi-Agent AI Pipeline
 # Orchestrates 5 agents sequentially

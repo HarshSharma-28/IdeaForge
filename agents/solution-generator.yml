@@ -1,4 +1,5 @@
 name: "solution_generator"
+description: "Generates multiple solution approaches and implements the best one as high-quality code."
 type: AgentComponent
 inputs:
   - from: "context:goal"

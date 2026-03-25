@@ -1,4 +1,5 @@
 name: "pr_generator"
+description: "Orchestrates branch creation, commits, and Merge Request generation."
 type: AgentComponent
 inputs:
   - from: "context:goal"

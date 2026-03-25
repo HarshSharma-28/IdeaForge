@@ -1,4 +1,5 @@
 name: "issue_intelligence"
+description: "Analyzes GitLab issues to identify root causes, classification, and affected areas."
 type: AgentComponent
 inputs:
   - from: "context:goal"

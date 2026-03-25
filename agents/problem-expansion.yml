@@ -1,4 +1,5 @@
 name: "problem_expansion"
+description: "Explores the codebase based on intelligence reports to map affected files and call chains."
 type: AgentComponent
 inputs:
   - from: "context:goal"
