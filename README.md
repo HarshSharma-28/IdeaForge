@@ -10,16 +10,13 @@
 
 ## 🎯 What is IdeaForge?
 
-IdeaForge is a **multi-agent AI flow** built natively on the **GitLab Duo Agent Platform**.
-Assign it to any GitLab issue and watch five AI agents collaborate to:
+IdeaForge is a **multi-agent AI system** built natively on the **GitLab Duo Agent Platform** that transforms a GitLab issue into a production-ready Merge Request — entirely autonomously.
 
-1. Analyze the root cause
-2. Map every affected file in the codebase
-3. Generate three solution approaches and implement the best one
-4. Run a full OWASP security scan
-5. Open a production-ready Merge Request
+**One label. Five agents. One Merge Request. Zero developer effort.**
 
-**One trigger. Five agents. One MR. Zero developer effort.**
+When a developer labels any GitLab issue with `ideaforge` or assigns it to the IdeaForge flow, a coordinated team of five AI agents springs into action. They read the issue, explore the codebase, write the code, scan for security vulnerabilities, and open a fully documented MR — all within minutes.
+
+This isn't a chatbot. This is a **digital engineering teammate** that does the work.
 
 ---
 
@@ -29,43 +26,118 @@ Assign it to any GitLab issue and watch five AI agents collaborate to:
 
 ---
 
+## ✨ The Problem IdeaForge Solves
+
+Modern software teams face an **AI Paradox**: AI can write code instantly, but the surrounding work — understanding issues, reading codebases, security review, PR documentation — still requires significant senior developer time.
+
+The result? Issues sit in backlogs. Simple bugs take days. Security scanning is skipped when teams are rushed.
+
+**IdeaForge eliminates this paradox** by automating the entire issue-to-PR lifecycle:
+
+| Without IdeaForge | With IdeaForge |
+|-------------------|----------------|
+| Developer reads issue (10 min) | Agent reads + analyzes issue |
+| Developer explores codebase (30–90 min) | Agent maps every affected file |
+| Developer writes solution (1–4 hours) | Agent generates 3 approaches, picks best |
+| Developer or reviewer does security check (varies) | Agent runs automated security scan |
+| Developer writes PR description (20 min) | Agent creates complete, professional MR |
+| **Total: 2–6 hours per issue** | **Total: 3–8 minutes** |
+
+---
+
 ## 🧠 Architecture: Five-Agent Sequential Pipeline
 
 ```
-Issue Assigned to IdeaForge Flow
-            │
-            ▼
-  ┌─────────────────────┐
-  │   Agent 1           │
-  │  Issue Intelligence │  → Root cause, severity, complexity, risk, acceptance criteria
-  └──────────┬──────────┘
-             │ passes: INTELLIGENCE_REPORT
-             ▼
-  ┌─────────────────────┐
-  │   Agent 2           │
-  │  Problem Expansion  │  → Reads actual files, maps call chains, identifies every change
-  └──────────┬──────────┘
-             │ passes: IMPACT_MAP
-             ▼
-  ┌─────────────────────┐
-  │   Agent 3           │
-  │  Solution Generator │  → 3 scored approaches, full production-ready code + tests
-  └──────────┬──────────┘
-             │ passes: SOLUTION_REPORT
-             ▼
-  ┌─────────────────────┐
-  │   Agent 4           │
-  │  Security Scanner   │  → OWASP Top 10 scan. CRITICAL finding = BLOCK (no MR created)
-  └──────────┬──────────┘
-             │ passes: SECURITY_REPORT
-             ▼
-  ┌─────────────────────┐
-  │   Agent 5           │
-  │  PR Generator       │  → Branch + commits + fully documented MR + issue comment
-  └─────────────────────┘
+GitLab Issue
+     │
+     │ (labeled: ideaforge or assigned to flow)
+     ▼
+┌─────────────────────────────────────────────────────────┐
+│                  IdeaForge Flow                          │
+│                                                          │
+│  ┌──────────────┐     ┌──────────────────┐              │
+│  │    Agent 1   │────▶│     Agent 2      │              │
+│  │   Issue      │     │    Problem       │              │
+│  │ Intelligence │     │   Expansion      │              │
+│  │              │     │                  │              │
+│  │ • Root cause │     │ • File mapping   │              │
+│  │ • Classify   │     │ • Call chains    │              │
+│  │ • Risk assess│     │ • Stack detect   │              │
+│  └──────────────┘     └──────────────────┘              │
+│         │                     │                          │
+│         └──────────┬──────────┘                          │
+│                    ▼                                      │
+│           ┌──────────────────┐                           │
+│           │     Agent 3      │                           │
+│           │    Solution      │                           │
+│           │   Generator      │                           │
+│           │                  │                           │
+│           │ • 3 approaches   │                           │
+│           │ • Scored matrix  │                           │
+│           │ • Full code impl │                           │
+│           │ • Tests written  │                           │
+│           └──────────────────┘                           │
+│                    │                                      │
+│                    ▼                                      │
+│           ┌──────────────────┐                           │
+│           │     Agent 4      │                           │
+│           │    Security      │◀── BLOCK if critical     │
+│           │    Scanner       │    vulnerabilities found  │
+│           │                  │                           │
+│           │ • OWASP Top 10   │                           │
+│           │ • Injection scan │                           │
+│           │ • Auth check     │                           │
+│           │ • Crypto check   │                           │
+│           └──────────────────┘                           │
+│                    │                                      │
+│           (PROCEED / PROCEED_WITH_WARNINGS)              │
+│                    ▼                                      │
+│           ┌──────────────────┐                           │
+│           │     Agent 5      │                           │
+│           │  PR Generator    │                           │
+│           │                  │                           │
+│           │ • Create branch  │                           │
+│           │ • Commit files   │                           │
+│           │ • Open full MR   │                           │
+│           │ • Comment issue  │                           │
+│           └──────────────────┘                           │
+└─────────────────────────────────────────────────────────┘
+                    │
+                    ▼
+          Production-Ready MR
+          (awaiting human review)
 ```
 
 Each agent receives the **complete output of all previous agents** as context. Nothing is lost between steps.
+
+---
+
+## 🤖 Meet the Agents
+
+### Agent 1: Issue Intelligence
+**"I understand what's broken."**
+
+Performs deep root-cause analysis using 5-Whys methodology. Classifies the issue (bug/feature/security/etc.), estimates complexity, maps affected system areas, extracts acceptance criteria, and produces a structured intelligence report that drives every downstream agent.
+
+### Agent 2: Problem Expansion
+**"I know every file that needs to change."**
+
+Explores the actual codebase — not a guess. Lists directories, reads dependency files, searches code for relevant patterns, reads every potentially affected file, traces call chains 2 levels deep, and identifies every test that needs updating.
+
+### Agent 3: Solution Generator
+**"I write the code. All of it."**
+
+Reads actual file contents, understands existing code style, and generates THREE complete solution approaches. Scores each on correctness, maintainability, performance, minimal footprint, and testability. Implements the optimal approach with complete, untruncated code for every file — including tests.
+
+### Agent 4: Security Scanner
+**"I stop bad code before it ships."**
+
+Performs a comprehensive OWASP Top 10 security audit of the generated solution. Checks for injection vulnerabilities, auth gaps, sensitive data exposure, crypto weaknesses, and business logic flaws. Issues a binary decision: PROCEED or BLOCK. Critical findings halt the pipeline entirely.
+
+### Agent 5: PR Generator
+**"I open the MR. You just review it."**
+
+The final agent. Checks the security decision, creates a new branch with a semantic name, commits each file with conventional commit messages, and opens a fully documented Merge Request with problem statement, solution rationale, security summary, testing instructions, and rollback plan. Then closes the loop by commenting on the original issue.
 
 ---
 
@@ -82,12 +154,6 @@ git clone https://gitlab.com/gitlab-ai-hackathon/ideaforge.git
 # Copy the flow files into your project
 cp -r ideaforge/.gitlab/ /your/project/
 cp ideaforge/AGENTS.md /your/project/
-
-# Commit
-cd /your/project
-git add .gitlab/ AGENTS.md
-git commit -m "feat: add IdeaForge multi-agent flow"
-git push
 ```
 
 ### Step 2: Register the flow in GitLab
@@ -102,32 +168,11 @@ git push
 Go to any issue in your project and either:
 - **Assign** the IdeaForge flow to the issue (via the Assignee field)
 - Comment: `@ideaforge` in the issue
-
-### Step 4: Watch it work
-
-You'll see five progress comments appear on the issue:
-
-```
-🔍 IdeaForge Step 1/5 — Issue Intelligence Complete
-   Root cause identified. Proceeding to codebase mapping... ⚙️
-
-🗺️ IdeaForge Step 2/5 — Codebase Mapped
-   4 files identified for changes. Generating solution... 💡
-
-💡 IdeaForge Step 3/5 — Solution Generated
-   "Minimal Patch" selected from 3 candidates. Running security scan... 🛡️
-
-🛡️ IdeaForge Step 4/5 — Security Scan Complete
-   Decision: PROCEED | Issues: Critical=0 High=0 Medium=1
-   Creating Merge Request... 🚀
-
-🔥 IdeaForge Complete!
-   👉 Review the MR: https://gitlab.com/your/project/-/merge_requests/42
-```
+- Add the label `ideaforge`
 
 ---
 
-## 📁 Repository Structure
+## 🏗️ Repository Structure
 
 ```
 .
@@ -145,14 +190,44 @@ You'll see five progress comments appear on the issue:
 
 ## 🛡️ Security-First Design
 
-IdeaForge has a **hard security gate**:
+IdeaForge has a **hard security gate** built in:
 
-- Agent 4 runs an OWASP Top 10 scan on every generated solution
-- Any **CRITICAL** finding → pipeline stops, MR is NOT created
-- The issue receives a detailed comment with all findings and remediation steps
-- Developers fix the issues, re-trigger IdeaForge — clean pipeline, clean MR
+- Agent 4 runs an OWASP Top 10 scan on every generated solution.
+- If Agent 4 finds **any CRITICAL vulnerability** → Pipeline BLOCKED, MR not created.
+- Developers are notified with exact findings and remediation steps.
+- Any **CRITICAL** finding → pipeline stops, MR is NOT created.
+- The issue receives a detailed comment with all findings and remediation steps.
+- Developers fix the issues, re-trigger IdeaForge — clean pipeline, clean MR.
 
 This makes IdeaForge safer than most human-written PR workflows.
+
+---
+
+## 🎯 Supported Issue Types
+
+IdeaForge handles any SDLC issue:
+
+| Type | Example |
+|------|---------|
+| 🐛 Bug Fix | "Login fails when email has uppercase letters" |
+| ✨ Feature | "Add rate limiting to the public API" |
+| ⚡ Performance | "Dashboard query takes 8 seconds on large datasets" |
+| 🔒 Security | "User can access other users' data by changing URL ID" |
+| ♻️ Refactor | "Extract payment logic into its own service" |
+| 📚 Documentation | "API endpoints lack OpenAPI spec" |
+| 🧪 Testing | "User service has no integration tests" |
+
+---
+
+## 🏆 Prize Categories Targeted
+
+| Prize | Justification |
+|-------|--------------|
+| 🥇 **Grand Prize** | Complete, novel, end-to-end automation of a real developer pain point |
+| 🔧 **Most Technically Impressive** | 5-agent orchestration with inter-agent context passing, security gating, and full code generation |
+| 💥 **Most Impactful** | Directly addresses the "AI Paradox" — AI writes code but humans still bottleneck everything else |
+| 🤝 **GitLab & Anthropic Prize** | All agents use Anthropic Claude via the GitLab Duo Agent Platform |
+| 🔌 **Easiest to Use** | One label or comment. That's the entire UX. |
 
 ---
 
@@ -163,46 +238,39 @@ This makes IdeaForge safer than most human-written PR workflows.
 | **Platform** | GitLab Duo Agent Platform (native — no external infra) |
 | **Schema** | Flow Registry v1 (`version: "v1"`, `environment: ambient`) |
 | **AI Model** | Anthropic Claude (via GitLab Duo Agent Platform default) |
-| **Trigger** | Assign flow to issue OR mention `@ideaforge` |
+| **Trigger** | Assign flow to issue, mention `@ideaforge`, or label `ideaforge` |
 | **Agents** | 5 `AgentComponent` entries in one YAML file |
 | **Context passing** | `from: "component:{agent}.output"` inputs |
-| **Total files** | 4 files — maximum simplicity, zero external dependencies |
-
-### Tools used across the pipeline
-
-| Tool | Used by |
-|------|---------|
-| `get_issue` | Agents 1, 2, 5 |
-| `list_repository_tree` | Agents 2, 5 |
-| `get_repository_file` | Agents 2, 3, 4 |
-| `find_files` | Agents 2, 3 |
-| `blob_search` | Agents 2, 3, 4 |
-| `create_file` | Agent 5 |
-| `create_commit` | Agent 5 |
-| `create_branch` | Agent 5 |
-| `create_merge_request` | Agent 5 |
-| `create_issue_note` | All agents (progress comments) |
+| **Total files** | 4-5 files — maximum simplicity, zero external dependencies |
 
 ---
 
-## 📊 What Makes IdeaForge Different
+## 📊 Comparison with Existing Solutions
 
-| Feature | GitHub Copilot | Devin | **IdeaForge** |
-|---------|---------------|-------|----------------|
-| Reads actual issue | ❌ | ✅ | ✅ |
-| Maps codebase impact | ❌ | ✅ | ✅ |
-| 3-approach generation with scoring | ❌ | ❌ | ✅ |
-| OWASP security scan | ❌ | ❌ | ✅ |
-| Hard security gate (BLOCK) | ❌ | ❌ | ✅ |
-| Full documented MR | ❌ | ✅ | ✅ |
-| Native GitLab — no external infra | ❌ | ❌ | ✅ |
-| Monthly cost | $19+ | $500 | **Free** |
+| Feature | GitHub Copilot | Devin | Cursor | **IdeaForge** |
+|---------|---------------|-------|--------|----------------|
+| Reads actual issue | ❌ | ✅ | ❌ | ✅ |
+| Maps codebase impact | ❌ | ✅ | ✅ | ✅ |
+| Multi-approach generation | ❌ | ❌ | ❌ | ✅ |
+| Built-in security scan | ❌ | ❌ | ❌ | ✅ |
+| Security gate (hard block) | ❌ | ❌ | ❌ | ✅ |
+| Full MR with documentation | ❌ | ✅ | ❌ | ✅ |
+| Native GitLab integration | ❌ | ❌ | ❌ | ✅ |
+| External infrastructure needed | ✅ | ✅ | ✅ | ❌ |
+| Cost | Subscription | $500/mo | Subscription | **Free** |
 
 ---
 
 ## 📄 License
 
-MIT — see [LICENSE](./LICENSE)
+MIT License — see [LICENSE](./LICENSE) for details.
+
+---
+
+## 🙏 Acknowledgments
+
+Built on the **GitLab Duo Agent Platform** using **Anthropic Claude** as the intelligence layer.
+Submitted to the **GitLab AI Hackathon 2026** by **Harsh Sharma**.
 
 ---
 
