@@ -1,0 +1,10 @@
+# IdeaForge — Flow Execution Configuration
+# Place this at: .gitlab/duo/agent-config.yml
+#
+# This file configures how the IdeaForge flow runs in GitLab CI/CD.
+# The runner must have the gitlab--duo tag and be instance-level or top-level group.
+
+# Optional: Add setup scripts that run before the flow executes
+# Uncomment if your target repositories need any special dependencies
+# setup_script:
+#   - echo "IdeaForge pipeline starting..."
