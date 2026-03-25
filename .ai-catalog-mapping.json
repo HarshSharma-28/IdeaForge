@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "agents": {
+    "agents/issue-intelligence.yml": {
+      "catalog_id": "gid://gitlab/Ai::Catalog::Item/1007166",
+      "name": "issue_intelligence",
+      "created_at": "2026-03-25T10:46:48.171Z",
+      "item_consumers": {
+        "group": {
+          "id": "gid://gitlab/Ai::Catalog::ItemConsumer/5676602"
+        },
+        "project": {
+          "id": "gid://gitlab/Ai::Catalog::ItemConsumer/5676603"
+        }
+      },
+      "latest_sync": {
+        "git_tag": "v1.0.0",
+        "catalog_version": "1.0.0",
+        "synced_at": "2026-03-25T10:46:48.171Z",
+        "definition_hash": "723a645b3a82b75f"
+      }
+    },
+    "agents/pr-generator.yml": {
+      "catalog_id": "gid://gitlab/Ai::Catalog::Item/1007167",
+      "name": "pr_generator",
+      "created_at": "2026-03-25T10:46:48.956Z",
+      "item_consumers": {
+        "group": {
+          "id": "gid://gitlab/Ai::Catalog::ItemConsumer/5676604"
+        },
+        "project": {
+          "id": "gid://gitlab/Ai::Catalog::ItemConsumer/5676607"
+        }
+      },
+      "latest_sync": {
+        "git_tag": "v1.0.0",
+        "catalog_version": "1.0.0",
+        "synced_at": "2026-03-25T10:46:48.956Z",
+        "definition_hash": "070013a97d576c0b"
+      }
+    },
+    "agents/problem-expansion.yml": {
+      "catalog_id": "gid://gitlab/Ai::Catalog::Item/1007168",
+      "name": "problem_expansion",
+      "created_at": "2026-03-25T10:46:49.800Z",
+      "item_consumers": {
+        "group": {
+          "id": "gid://gitlab/Ai::Catalog::ItemConsumer/5676608"
+        },
+        "project": {
+          "id": "gid://gitlab/Ai::Catalog::ItemConsumer/5676609"
+        }
+      },
+      "latest_sync": {
+        "git_tag": "v1.0.0",
+        "catalog_version": "1.0.0",
+        "synced_at": "2026-03-25T10:46:49.800Z",
+        "definition_hash": "e7f374ab313a8385"
+      }
+    },
+    "agents/security-scanner.yml": {
+      "catalog_id": "gid://gitlab/Ai::Catalog::Item/1007169",
+      "name": "security_scanner",
+      "created_at": "2026-03-25T10:46:50.602Z",
+      "item_consumers": {
+        "group": {
+          "id": "gid://gitlab/Ai::Catalog::ItemConsumer/5676610"
+        },
+        "project": {
+          "id": "gid://gitlab/Ai::Catalog::ItemConsumer/5676611"
+        }
+      },
+      "latest_sync": {
+        "git_tag": "v1.0.0",
+        "catalog_version": "1.0.0",
+        "synced_at": "2026-03-25T10:46:50.602Z",
+        "definition_hash": "f0ad5fcaec318333"
+      }
+    },
+    "agents/solution-generator.yml": {
+      "catalog_id": "gid://gitlab/Ai::Catalog::Item/1007170",
+      "name": "solution_generator",
+      "created_at": "2026-03-25T10:46:51.452Z",
+      "item_consumers": {
+        "group": {
+          "id": "gid://gitlab/Ai::Catalog::ItemConsumer/5676612"
+        },
+        "project": {
+          "id": "gid://gitlab/Ai::Catalog::ItemConsumer/5676613"
+        }
+      },
+      "latest_sync": {
+        "git_tag": "v1.0.0",
+        "catalog_version": "1.0.0",
+        "synced_at": "2026-03-25T10:46:51.452Z",
+        "definition_hash": "1ba25972fca6633b"
+      }
+    }
+  },
+  "flows": {}
+}
